@@ -1,0 +1,17 @@
+plugins {
+    id 'org.springframework.boot'
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter'
+
+    implementation project(':core')
+    implementation project(':business')
+    implementation project(':customer')
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.modulith:spring-modulith-starter-test'
+    testImplementation 'org.testcontainers:postgresql'
+    testImplementation 'org.testcontainers:junit-jupiter'
+}

@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: booking-platform
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/booking_platform}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: never
+      table-name: core.spring_session
+
+  flyway:
+    enabled: true
+
+logging:
+  level:
+    com.booking: DEBUG
+    org.jooq: INFO

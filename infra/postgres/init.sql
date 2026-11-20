@@ -1,0 +1,7 @@
+-- Initialize PostgreSQL database extensions and schemas
+CREATE EXTENSION IF NOT EXISTS btree_gist;
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
+
+CREATE SCHEMA IF NOT EXISTS core;
+CREATE SCHEMA IF NOT EXISTS business;
+CREATE SCHEMA IF NOT EXISTS customer;

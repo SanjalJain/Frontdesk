@@ -1,0 +1,16 @@
+{
+  "name": "booking-and-appointment-platform",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:backend": "PATH=\"/opt/homebrew/opt/openjdk@17/bin:/opt/homebrew/bin:$PATH\" gradle -p backend :app:bootRun",
+    "dev:staff": "npm run dev --workspace=@booking/staff",
+    "dev:public": "npm run dev --workspace=@booking/public",
+    "build": "npm run build --workspaces",
+    "lint": "npm run lint --workspaces"
+  }
+}

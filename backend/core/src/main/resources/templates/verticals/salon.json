@@ -1,0 +1,15 @@
+{
+  "key": "salon",
+  "label": "Salon",
+  "labels": {
+    "customer": "Client",
+    "staff": "Stylist",
+    "appointment": "Booking"
+  },
+  "intake_fields": ["hair_type", "skin_notes", "preferred_stylist"],
+  "default_services": [
+    {"name": "Haircut", "duration_min": 30, "price_paise": 40000},
+    {"name": "Hair colour", "duration_min": 90, "price_paise": 250000}
+  ],
+  "recall_months": 2
+}

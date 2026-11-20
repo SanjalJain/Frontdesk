@@ -1,0 +1,16 @@
+{
+  "key": "dental",
+  "label": "Dental clinic",
+  "labels": {
+    "customer": "Patient",
+    "staff": "Dentist",
+    "appointment": "Appointment"
+  },
+  "intake_fields": ["allergies", "medical_conditions", "chief_complaint"],
+  "default_services": [
+    {"name": "Consultation", "duration_min": 20, "price_paise": 30000},
+    {"name": "Scaling and polishing", "duration_min": 40, "price_paise": 120000},
+    {"name": "Root canal (visit)", "duration_min": 60, "price_paise": 400000}
+  ],
+  "recall_months": 6
+}

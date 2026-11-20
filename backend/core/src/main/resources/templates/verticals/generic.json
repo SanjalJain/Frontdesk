@@ -1,0 +1,12 @@
+{
+  "key": "generic",
+  "label": "Generic",
+  "labels": {
+    "customer": "Customer",
+    "staff": "Staff",
+    "appointment": "Appointment"
+  },
+  "intake_fields": [],
+  "default_services": [],
+  "recall_months": 3
+}
