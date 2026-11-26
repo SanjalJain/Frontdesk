@@ -28,6 +28,9 @@ public class TenantContextFilter extends OncePerRequestFilter {
                 if (principal.getTenantId() != null) {
                     TenantContext.setTenantId(principal.getTenantId());
                 }
+                if (principal.getId() != null) {
+                    TenantContext.setUserId(principal.getId());
+                }
             } else {
                 // 2. Allow X-Tenant-ID header for API calls / tests
                 String headerTenantId = request.getHeader("X-Tenant-ID");

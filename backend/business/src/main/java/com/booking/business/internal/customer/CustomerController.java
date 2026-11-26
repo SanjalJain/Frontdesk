@@ -44,15 +44,15 @@ public class CustomerController {
 
     @GetMapping
     public ResponseEntity<List<CustomerDto>> searchCustomers(
-            @RequestParam(required = false) String q,
-            @RequestParam(defaultValue = "20") int limit
+            @RequestParam(name = "q", required = false) String q,
+            @RequestParam(name = "limit", defaultValue = "20") int limit
     ) {
         Long tenantId = TenantContext.requireTenantId();
         return ResponseEntity.ok(customerService.searchCustomers(tenantId, q, limit));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerDto> getCustomer(@PathVariable Long id) {
+    public ResponseEntity<CustomerDto> getCustomer(@PathVariable(name = "id") Long id) {
         Long tenantId = TenantContext.requireTenantId();
         return customerService.findById(tenantId, id)
                 .map(ResponseEntity::ok)

@@ -1,6 +1,7 @@
 package com.booking.core.internal.tenancy;
 
 import com.booking.core.api.dto.TenantDto;
+import com.booking.core.api.TenantLookupService;
 import org.jooq.DSLContext;
 import org.jooq.JSONB;
 import org.jooq.Record;
@@ -14,7 +15,7 @@ import java.util.Optional;
 import static org.jooq.impl.DSL.*;
 
 @Repository
-public class TenantRepository {
+public class TenantRepository implements TenantLookupService {
 
     private final DSLContext dsl;
 

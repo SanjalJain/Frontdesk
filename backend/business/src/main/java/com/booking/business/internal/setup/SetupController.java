@@ -29,29 +29,39 @@ public class SetupController {
     private final WorkingHoursRepository workingHoursRepository;
     private final TimeOffRepository timeOffRepository;
     private final VerticalSeederService verticalSeederService;
+    private final DemoDataSeederService demoDataSeederService;
 
     public SetupController(
             ServiceRepository serviceRepository,
             StaffRepository staffRepository,
             WorkingHoursRepository workingHoursRepository,
             TimeOffRepository timeOffRepository,
-            VerticalSeederService verticalSeederService
+            VerticalSeederService verticalSeederService,
+            DemoDataSeederService demoDataSeederService
     ) {
         this.serviceRepository = serviceRepository;
         this.staffRepository = staffRepository;
         this.workingHoursRepository = workingHoursRepository;
         this.timeOffRepository = timeOffRepository;
         this.verticalSeederService = verticalSeederService;
+        this.demoDataSeederService = demoDataSeederService;
     }
 
     @PostMapping("/onboarding/seed")
     public ResponseEntity<List<ServiceDto>> seedOnboarding(
-            @RequestParam String vertical,
-            @RequestParam(required = false) String primaryStaffName
+            @RequestParam(name = "vertical") String vertical,
+            @RequestParam(name = "primaryStaffName", required = false) String primaryStaffName
     ) {
         Long tenantId = TenantContext.requireTenantId();
         List<ServiceDto> seeded = verticalSeederService.seedFromTemplate(tenantId, vertical, primaryStaffName);
         return ResponseEntity.ok(seeded);
+    }
+
+    @PostMapping("/demo-seed")
+    public ResponseEntity<java.util.Map<String, String>> seedDemoData() {
+        Long tenantId = TenantContext.requireTenantId();
+        demoDataSeederService.seedRealisticData(tenantId);
+        return ResponseEntity.ok(java.util.Map.of("message", "Demo data seeded successfully"));
     }
 
     // --- Services ---
@@ -105,7 +115,7 @@ public class SetupController {
 
     @PutMapping("/hours/staff/{staffId}")
     public ResponseEntity<Void> setStaffHours(
-            @PathVariable Long staffId,
+            @PathVariable(name = "staffId") Long staffId,
             @RequestBody List<WorkingHoursDto.WorkingHoursRequest> hours
     ) {
         Long tenantId = TenantContext.requireTenantId();
@@ -134,7 +144,7 @@ public class SetupController {
     }
 
     @DeleteMapping("/time-off/{id}")
-    public ResponseEntity<Void> deleteTimeOff(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteTimeOff(@PathVariable(name = "id") Long id) {
         Long tenantId = TenantContext.requireTenantId();
         timeOffRepository.delete(tenantId, id);
         return ResponseEntity.noContent().build();
